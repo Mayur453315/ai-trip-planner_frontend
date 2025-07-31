@@ -1,0 +1,40 @@
+.nav-link {
+  position: relative;
+  color: white !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-link:hover {
+  color: #fff !important;
+  background-color: rgba(255, 255, 255, 0.1); /* subtle overlay */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);  /* visible shadow */
+  transform: translateY(-2px);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  bottom: 6px;
+  height: 2px;
+  width: 0%;
+  background: #ffc107;
+  transition: width 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+.nav-link:hover::after {
+  width: 70%;
+}
+
+/* Active route style */
+.active-nav {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+}

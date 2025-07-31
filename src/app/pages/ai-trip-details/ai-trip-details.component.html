@@ -1,0 +1,11 @@
+<app-user-navbar></app-user-navbar>
+<div class="container mt-4" *ngIf="!isLoading && trip">
+  <h2>{{ trip.destination }}</h2>
+  <p>{{ trip.startDate | date }} - {{ trip.endDate | date }}</p>
+
+  <hr />
+
+  <div [innerHTML]="trip.itinerary" class="border p-3 rounded bg-light"></div>
+
+  <button class="btn btn-secondary mt-3" routerLink="/Ai-trip-list">Back to List</button>
+</div>

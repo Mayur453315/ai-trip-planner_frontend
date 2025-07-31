@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3 shadow-sm">
+  <div class="container-fluid">
+    
+    <!-- Brand -->
+    <a class="navbar-brand fs-5 fw-bold" href="#">
+      <i class="bi bi-speedometer2 me-2"></i>Admin Dashboard
+    </a>
+
+    <!-- Toggler for small devices -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isMenuOpen = !isMenuOpen"
+      [attr.aria-expanded]="isMenuOpen"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible menu -->
+    <div class="collapse navbar-collapse" [ngClass]="{ show: isMenuOpen }">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/admin/users">
+            <i class="bi bi-people-fill me-1"></i> Manage Users
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/admin/trips">
+            <i class="bi bi-suitcase-fill me-1"></i> Manage Trips
+          </a>
+        </li>
+        <li class="nav-item d-lg-none">
+          <hr />
+          <p class="mb-1 text-white"><strong>User:</strong> {{ username }}</p>
+          <p class="mb-2 text-white"><strong>Email:</strong> {{ email }}</p>
+          <button class="btn btn-danger btn-sm w-100 mb-2" (click)="logout()">
+            <i class="bi bi-box-arrow-right me-1"></i> Logout
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Profile icon for large screens -->
+    <div class="position-relative d-none d-lg-block">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+        alt="Profile"
+        (click)="toggleDropdown()"
+        class="rounded-circle border border-white shadow-sm"
+        style="width: 40px; height: 40px; cursor: pointer;"
+      />
+
+      <!-- Dropdown for large screen -->
+      <div
+        *ngIf="showDropdown"
+        class="dropdown-menu dropdown-menu-end show mt-2 p-3 shadow fadeIn"
+        style="display: block; position: absolute; right: 0; min-width: 250px;"
+      >
+        <p class="mb-1"><strong>User:</strong> {{ username }}</p>
+        <p class="mb-2"><strong>Email:</strong> {{ email }}</p>
+        <button class="btn btn-danger btn-sm w-100" (click)="logout()">
+          <i class="bi bi-box-arrow-right me-1"></i> Logout
+        </button>
+      </div>
+    </div>
+
+  </div>
+</nav>

@@ -1,0 +1,66 @@
+<app-user-navbar></app-user-navbar>
+
+<div class="container mt-4 mb-5">
+  <div class="card shadow-lg p-4 rounded animate__animated animate__fadeIn" style="max-width: 700px; margin: auto;">
+    <h2 class="mb-4 text-center text-primary">
+      <i class="bi bi-geo-fill me-2"></i>Plan Your Trip
+    </h2>
+
+    <div class="mb-3">
+      <input type="text" [(ngModel)]="destination" placeholder="Enter Destination" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <input type="date" [(ngModel)]="startDate" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <input type="date" [(ngModel)]="endDate" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label for="languageSelect" class="form-label"><i class="bi bi-translate me-2"></i>Select Language</label>
+      <select class="form-select" id="languageSelect" [(ngModel)]="selectedLanguage">
+        <option value="en">English</option>
+        <option value="hi">Hindi (हिंदी)</option>
+        <option value="mr">Marathi (मराठी)</option>
+      </select>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2 justify-content-center mb-3">
+      <button (click)="generateItinerary()" class="btn btn-success">
+        <i class="bi bi-lightbulb-fill me-1"></i>Generate Itinerary
+      </button>
+      <button (click)="checkWeatherAndPacking()" class="btn btn-info text-white">
+        <i class="bi bi-cloud-sun-fill me-1"></i>Check Weather & Packing List
+      </button>
+    </div>
+
+    <!-- Loading -->
+    <div *ngIf="isLoading" class="text-center mt-3">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-2"><strong>Processing...</strong></p>
+    </div>
+
+    <!-- Weather -->
+    <div *ngIf="!isLoading && weatherData" class="mt-4 p-3 border rounded bg-light">
+      <h5><i class="bi bi-cloud-drizzle-fill me-1"></i> Current Weather in {{ weatherData.name }}</h5>
+      <p><strong>Temperature:</strong> {{ weatherData.main.temp }}°C</p>
+      <p><strong>Condition:</strong> {{ weatherData.weather[0].description }}</p>
+      <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
+    </div>
+
+    <!-- Packing List -->
+    <app-packing-list *ngIf="!isLoading && weatherData" [weatherData]="weatherData"></app-packing-list>
+
+    <!-- Itinerary -->
+    <div *ngIf="!isLoading && safeHtmlResult" class="mt-4">
+      <h5><i class="bi bi-journal-check me-1"></i> Generated Itinerary</h5>
+      <div [innerHTML]="safeHtmlResult" class="border p-3 rounded bg-light"></div>
+
+      <button class="btn btn-primary mt-3" (click)="saveTrip()">
+        <i class="bi bi-save2-fill me-1"></i>AI Trip Save
+      </button>
+    </div>
+  </div>
+</div>

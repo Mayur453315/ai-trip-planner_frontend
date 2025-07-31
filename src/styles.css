@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+/* Custom Hover and Focus Effects */
+input.form-control:focus,
+select.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  transition: all 0.3s ease-in-out;
+}
+
+button.btn:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-underline:hover {
+  text-decoration: underline !important;
+  color: #0a58ca;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Card Animation on Load */
+.card {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+/* Hover effect for nav links */
+.navbar .nav-link:hover {
+  opacity: 0.9;
+  text-decoration: underline;
+}
+
+/* Dropdown animation */
+.dropdown-menu.animate__fadeIn {
+  animation-duration: 0.3s;
+}

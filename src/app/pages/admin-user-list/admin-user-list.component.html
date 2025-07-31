@@ -1,0 +1,74 @@
+<app-admin-navbar></app-admin-navbar>
+
+<div class="container py-4 animate__animated animate__fadeIn">
+  <h2 class="mb-4 text-primary">
+    <i class="bi bi-people-fill me-2"></i>Manage Users
+  </h2>
+
+  <!-- Edit Form -->
+  <div *ngIf="isEditMode && selectedUser" class="card shadow-sm border-0 p-4 mb-4">
+    <h4 class="mb-3">
+      <i class="bi bi-pencil-square me-2 text-success"></i>Edit User
+    </h4>
+    <form (ngSubmit)="updateUser()">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Username</label>
+          <input [(ngModel)]="selectedUser.username" name="username" class="form-control" required />
+        </div>
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Email</label>
+          <input [(ngModel)]="selectedUser.email" name="email" type="email" class="form-control" required />
+        </div>
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Role</label>
+          <select [(ngModel)]="selectedUser.role" name="role" class="form-select">
+            <option value="USER">User</option>
+            <option value="ADMIN">Admin</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-success">
+          <i class="bi bi-check-circle me-1"></i> Update
+        </button>
+        <button type="button" (click)="cancelEdit()" class="btn btn-secondary">
+          <i class="bi bi-x-circle me-1"></i> Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- User Table -->
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered align-middle shadow-sm">
+      <thead class="table-primary">
+        <tr>
+          <th>#</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <span class="badge bg-info text-dark">{{ user.role }}</span>
+          </td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-warning me-1" (click)="editUser(user)">
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

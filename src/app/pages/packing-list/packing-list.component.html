@@ -1,0 +1,14 @@
+<div *ngIf="packingItems.length > 0" class="mt-4">
+  <h4 class="text-success mb-3">
+    <i class="bi bi-suitcase-fill me-2"></i>Packing List Based on Weather:
+  </h4>
+  <ul class="list-group shadow-sm">
+    <li *ngFor="let item of packingItems" class="list-group-item d-flex align-items-center">
+      <i class="bi bi-check-circle-fill text-success me-2"></i> {{ item }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="packingItems.length === 0" class="alert alert-warning mt-4 text-center">
+  <i class="bi bi-exclamation-triangle-fill me-2"></i>No packing suggestions available.
+</div>

@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
+  <div class="container-fluid">
+    <span class="navbar-brand fw-bold">User Dashboard</span>
+
+    <div class="d-flex align-items-center gap-4">
+      <a routerLink="/add-trip" class="nav-link text-white">Add Trip</a>
+      <a routerLink="/trip-list" class="nav-link text-white">View Trips</a>
+      <a routerLink="/generate-itinerary" class="nav-link text-white">AI Itinerary</a>
+      <a routerLink="/Ai-trip-list" class="nav-link text-white">AI Saved Trips</a>
+
+      <!-- Profile Image and Dropdown -->
+      <div class="position-relative">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+          alt="Profile"
+          class="rounded-circle"
+          style="width: 40px; height: 40px; cursor: pointer;"
+          (click)="toggleDropdown()"
+        />
+
+        <div
+          *ngIf="showDropdown"
+          class="position-absolute end-0 mt-2 bg-white text-dark border rounded shadow p-3"
+          style="min-width: 220px; z-index: 1050;"
+        >
+          <p class="mb-1"><strong>User:</strong> {{ username }}</p>
+          <p class="mb-3"><strong>Email:</strong> {{ email }}</p>
+          <button class="btn btn-danger btn-sm w-100" (click)="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
